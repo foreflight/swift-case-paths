@@ -2,7 +2,7 @@ import Foundation
 @_spi(CurrentTestCase) import XCTestDynamicOverlay
 
 /// Asserts that an enum value matches a particular case and modifies the associated value in place.
-@available(*, deprecated, message: "Use 'CasePathable.modify' to mutate an expected case, instead.")
+//@available(*, deprecated, message: "Use 'CasePathable.modify' to mutate an expected case, instead.")
 public func XCTModify<Wrapped>(
   _ optional: inout Wrapped?,
   _ message: @autoclosure () -> String = "",
@@ -14,7 +14,7 @@ public func XCTModify<Wrapped>(
 }
 
 /// Asserts that an enum value matches a particular case and modifies the associated value in place.
-@available(*, deprecated, message: "Use 'CasePathable.modify' to mutate an expected case, instead.")
+//@available(*, deprecated, message: "Use 'CasePathable.modify' to mutate an expected case, instead.")
 public func XCTModify<Enum, Case>(
   _ enum: inout Enum,
   case keyPath: CaseKeyPath<Enum, Case>,

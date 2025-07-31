@@ -31,10 +31,10 @@ extension AnyCasePath {
     return result
   }
 
-  @available(iOS, deprecated: 9999, message: "Chain case key paths together, instead.")
-  @available(macOS, deprecated: 9999, message: "Chain case key paths together, instead.")
-  @available(tvOS, deprecated: 9999, message: "Chain case key paths together, instead.")
-  @available(watchOS, deprecated: 9999, message: "Chain case key paths together, instead.")
+////@available(iOS, deprecated: 9999, message: "Chain case key paths together, instead.")
+////@available(macOS, deprecated: 9999, message: "Chain case key paths together, instead.")
+////@available(tvOS, deprecated: 9999, message: "Chain case key paths together, instead.")
+////@available(watchOS, deprecated: 9999, message: "Chain case key paths together, instead.")
   public func appending<AppendedValue>(
     path: AnyCasePath<Value, AppendedValue>
   ) -> AnyCasePath<Root, AppendedValue> {
@@ -50,7 +50,7 @@ struct ExtractionFailed: Error {}
 // Deprecated after 1.4.2:
 
 extension AnyCasePath where Root == Value {
-  @available(*, deprecated, message: "Use the '\\.self' case key path, instead")
+//  @available(*, deprecated, message: "Use the '\\.self' case key path, instead")
   public static var `self`: Self {
     .init(
       embed: { $0 },
@@ -60,7 +60,7 @@ extension AnyCasePath where Root == Value {
 }
 
 extension AnyCasePath where Root: _OptionalProtocol, Value == Root.Wrapped {
-  @available(*, deprecated, message: "Use the '\\Optional.Cases.some' case key path, instead")
+//  @available(*, deprecated, message: "Use the '\\Optional.Cases.some' case key path, instead")
   public static var some: Self {
     .init(embed: { Root($0) }, extract: { $0.optional })
   }
@@ -79,7 +79,7 @@ extension Optional: _OptionalProtocol {
 }
 
 extension AnyCasePath {
-  @available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
+//  @available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
   public init(_ embed: @escaping (Value) -> Root) {
     @UncheckedSendable var embed = embed
     self.init(unsafe: { [$embed] in $embed.wrappedValue($0) })
@@ -87,7 +87,7 @@ extension AnyCasePath {
 }
 
 extension AnyCasePath where Value == Void {
-  @available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
+//  @available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
   @_disfavoredOverload
   public init(_ root: @autoclosure @escaping @Sendable () -> Root) {
     self.init(unsafe: root())
@@ -95,7 +95,7 @@ extension AnyCasePath where Value == Void {
 }
 
 extension AnyCasePath where Root == Value {
-  @available(*, deprecated, message: "Use the '\\.self' case key path, instead")
+//  @available(*, deprecated, message: "Use the '\\.self' case key path, instead")
   public init(_ type: Root.Type) {
     self = .self
   }
@@ -105,14 +105,14 @@ prefix operator /
 
 extension AnyCasePath {
   @_documentation(visibility: internal)
-  @available(*, deprecated, message: "Use 'CasePathable.is' with a case key path, instead")
+//  @available(*, deprecated, message: "Use 'CasePathable.is' with a case key path, instead")
   public static func ~= (pattern: AnyCasePath, value: Root) -> Bool {
     pattern.extract(from: value) != nil
   }
 }
 
 @_documentation(visibility: internal)
-@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
+//@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
 public prefix func / <Root, Value>(
   embed: @escaping (Value) -> Root
 ) -> AnyCasePath<Root, Value> {
@@ -124,7 +124,7 @@ public prefix func / <Root, Value>(
 }
 
 @_documentation(visibility: internal)
-@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
+//@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
 public prefix func / <Root, Value>(
   embed: @escaping (Value) -> Root?
 ) -> AnyCasePath<Root?, Value> {
@@ -136,7 +136,7 @@ public prefix func / <Root, Value>(
 }
 
 @_documentation(visibility: internal)
-@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
+//@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
 public prefix func / <Root>(
   root: @autoclosure @escaping @Sendable () -> Root
 ) -> AnyCasePath<Root, Void> {
@@ -144,7 +144,7 @@ public prefix func / <Root>(
 }
 
 @_documentation(visibility: internal)
-@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
+//@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
 public prefix func / <Root>(
   root: @autoclosure @escaping @Sendable () -> Root?
 ) -> AnyCasePath<Root?, Void> {
@@ -152,7 +152,7 @@ public prefix func / <Root>(
 }
 
 @_documentation(visibility: internal)
-@available(*, deprecated, message: "Use the '\\.self' case key path, instead")
+//@available(*, deprecated, message: "Use the '\\.self' case key path, instead")
 public prefix func / <Root>(
   type: Root.Type
 ) -> AnyCasePath<Root, Root> {
@@ -160,7 +160,7 @@ public prefix func / <Root>(
 }
 
 @_documentation(visibility: internal)
-@available(*, deprecated, message: "Use a case key path (like '\\.self' or '\\.some'), instead")
+//@available(*, deprecated, message: "Use a case key path (like '\\.self' or '\\.some'), instead")
 public prefix func / <Root, Value>(
   path: AnyCasePath<Root, Value>
 ) -> AnyCasePath<Root, Value> {
@@ -169,9 +169,9 @@ public prefix func / <Root, Value>(
 
 @_disfavoredOverload
 @_documentation(visibility: internal)
-@available(
-  *, deprecated, message: "Use a 'CasePathable' case property via dynamic member lookup, instead"
-)
+//@available(
+//  *, deprecated, message: "Use a 'CasePathable' case property via dynamic member lookup, instead"
+//)
 public prefix func / <Root, Value>(
   embed: @escaping (Value) -> Root
 ) -> (Root) -> Value? {
@@ -180,9 +180,9 @@ public prefix func / <Root, Value>(
 
 @_disfavoredOverload
 @_documentation(visibility: internal)
-@available(
-  *, deprecated, message: "Use a 'CasePathable' case property via dynamic member lookup, instead"
-)
+//@available(
+//  *, deprecated, message: "Use a 'CasePathable' case property via dynamic member lookup, instead"
+//)
 public prefix func / <Root, Value>(
   embed: @escaping (Value) -> Root?
 ) -> (Root?) -> Value? {
@@ -191,9 +191,9 @@ public prefix func / <Root, Value>(
 
 @_disfavoredOverload
 @_documentation(visibility: internal)
-@available(
-  *, deprecated, message: "Use a 'CasePathable' case property via dynamic member lookup, instead"
-)
+//@available(
+//  *, deprecated, message: "Use a 'CasePathable' case property via dynamic member lookup, instead"
+//)
 public prefix func / <Root>(
   root: @autoclosure @escaping @Sendable () -> Root
 ) -> (Root) -> Void? {
@@ -202,9 +202,9 @@ public prefix func / <Root>(
 
 @_disfavoredOverload
 @_documentation(visibility: internal)
-@available(
-  *, deprecated, message: "Use a 'CasePathable' case property via dynamic member lookup, instead"
-)
+//@available(
+//  *, deprecated, message: "Use a 'CasePathable' case property via dynamic member lookup, instead"
+//)
 public prefix func / <Root>(
   root: @autoclosure @escaping @Sendable () -> Root
 ) -> (Root?) -> Void? {
@@ -219,7 +219,7 @@ infix operator .. : CasePathCompositionPrecedence
 
 extension AnyCasePath {
   @_documentation(visibility: internal)
-  @available(*, deprecated, message: "Append 'CasePathable' case key paths, instead")
+//  @available(*, deprecated, message: "Append 'CasePathable' case key paths, instead")
   public static func .. <AppendedValue>(
     lhs: AnyCasePath,
     rhs: AnyCasePath<Value, AppendedValue>
@@ -228,7 +228,7 @@ extension AnyCasePath {
   }
 
   @_documentation(visibility: internal)
-  @available(*, deprecated, message: "Append 'CasePathable' case key paths, instead")
+//  @available(*, deprecated, message: "Append 'CasePathable' case key paths, instead")
   public static func .. <AppendedValue>(
     lhs: AnyCasePath,
     rhs: @escaping (AppendedValue) -> Value
@@ -238,7 +238,7 @@ extension AnyCasePath {
 }
 
 @_documentation(visibility: internal)
-@available(*, deprecated, message: "Chain 'CasePathable' case properties, instead")
+//@available(*, deprecated, message: "Chain 'CasePathable' case properties, instead")
 public func .. <Root, Value, AppendedValue>(
   lhs: @escaping (Root) -> Value?,
   rhs: @escaping (AppendedValue) -> Value
@@ -280,7 +280,7 @@ public func XCTUnwrap<Enum, Case>(
   return value
 }
 
-@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
+//@available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
 public func XCTModify<Enum, Case>(
   _ enum: inout Enum,
   case casePath: AnyCasePath<Enum, Case>,
@@ -299,10 +299,10 @@ public func XCTModify<Enum, Case>(
 ///
 /// This type has been renamed to `AnyCasePath` and is primarily employed by the ``CasePathable()``
 /// macro to derive `CaseKeyPath`s from an enum's cases.
-@available(*, deprecated, renamed: "AnyCasePath")
+//@available(*, deprecated, renamed: "AnyCasePath")
 public typealias CasePath = AnyCasePath
 
-@available(*, deprecated, message: "Use 'CustomDebugStringConvertible.debugDescription', instead")
+//@available(*, deprecated, message: "Use 'CustomDebugStringConvertible.debugDescription', instead")
 extension AnyCasePath: CustomStringConvertible {
   public var description: String {
     "AnyCasePath<\(typeName(Root.self)), \(typeName(Value.self))>"
@@ -314,7 +314,7 @@ extension AnyCasePath where Root == Void {
   ///
   /// - Parameter value: A constant value.
   /// - Returns: A case path from `()` to `value`.
-  @available(*, deprecated)
+//  @available(*, deprecated)
   public static func constant(_ value: @autoclosure @escaping @Sendable () -> Value) -> Self {
     .init(
       embed: { _ in () },
@@ -326,7 +326,7 @@ extension AnyCasePath where Root == Void {
 extension AnyCasePath where Value == Never {
   /// The never case path for `Root`: a case path that always fails to extract the a value of the
   /// uninhabited `Never` type.
-  @available(*, deprecated)
+//  @available(*, deprecated)
   public static var never: Self {
     @Sendable func absurd<A>(_ never: Never) -> A {}
     return .init(
@@ -339,7 +339,7 @@ extension AnyCasePath where Value == Never {
 extension AnyCasePath where Value: RawRepresentable, Root == Value.RawValue {
   /// Returns a case path for `RawRepresentable` types: a case path that attempts to extract a value
   /// that can be represented by a raw value from a raw value.
-  @available(*, deprecated)
+//  @available(*, deprecated)
   public static var rawValue: Self {
     .init(
       embed: { $0.rawValue },
@@ -351,7 +351,7 @@ extension AnyCasePath where Value: RawRepresentable, Root == Value.RawValue {
 extension AnyCasePath where Value: LosslessStringConvertible, Root == String {
   /// Returns a case path for `LosslessStringConvertible` types: a case path that attempts to
   /// extract a value that can be represented by a lossless string from a string.
-  @available(*, deprecated)
+//  @available(*, deprecated)
   public static var description: Self {
     .init(
       embed: { $0.description },
@@ -369,7 +369,7 @@ extension AnyCasePath {
   ///   otherwise undefined.
   /// - Parameter embed: An enum case initializer.
   /// - Returns: A case path that extracts associated values from enum cases.
-  @available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
+//  @available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
   public static func `case`(_ embed: @escaping @Sendable (Value) -> Root) -> Self {
     self.init(
       embed: embed,
@@ -386,7 +386,7 @@ extension AnyCasePath where Value == Void {
   ///   values. Its behavior is otherwise undefined.
   /// - Parameter value: An enum case with no associated values.
   /// - Returns: A case path that extracts `()` if the case matches, otherwise `nil`.
-  @available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
+//  @available(*, deprecated, message: "Use a 'CasePathable' case key path, instead")
   public static func `case`(_ value: @autoclosure @escaping @Sendable () -> Root) -> Self {
     Self(
       embed: value,
@@ -411,7 +411,7 @@ extension AnyCasePath where Value == Void {
 ///   - root: A root enum value.
 /// - Returns: Values if they can be extracted from the given enum case initializer and root enum,
 ///   otherwise `nil`.
-@available(*, deprecated, message: "Use a '@CasePathable' case property, instead")
+//@available(*, deprecated, message: "Use a '@CasePathable' case property, instead")
 public func extract<Root, Value>(
   case embed: @escaping @Sendable (Value) -> Root,
   from root: Root
@@ -435,7 +435,7 @@ public func extract<Root, Value>(
 ///   - root: A root enum value.
 /// - Returns: Values if they can be extracted from the given enum case initializer and root enum,
 ///   otherwise `nil`.
-@available(*, deprecated, message: "Use a '@CasePathable' case property, instead")
+//@available(*, deprecated, message: "Use a '@CasePathable' case property, instead")
 public func extract<Root, Value>(
   case embed: @escaping @Sendable (Value) -> Root?,
   from root: Root?
@@ -459,7 +459,7 @@ public func extract<Root, Value>(
 ///   otherwise undefined.
 /// - Parameter embed: An enum case initializer.
 /// - Returns: A function that can attempt to extract associated values from an enum.
-@available(*, deprecated, message: "Use a '@CasePathable' case property, instead")
+//@available(*, deprecated, message: "Use a '@CasePathable' case property, instead")
 public func extract<Root, Value>(_ embed: @escaping @Sendable (Value) -> Root) -> (Root) -> Value? {
   extractHelp(embed)
 }
@@ -480,7 +480,7 @@ public func extract<Root, Value>(_ embed: @escaping @Sendable (Value) -> Root) -
 ///   otherwise undefined.
 /// - Parameter embed: An enum case initializer.
 /// - Returns: A function that can attempt to extract associated values from an enum.
-@available(*, deprecated, message: "Use a '@CasePathable' case property, instead")
+//@available(*, deprecated, message: "Use a '@CasePathable' case property, instead")
 public func extract<Root, Value>(
   _ embed: @escaping @Sendable (Value) -> Root?
 ) -> @Sendable (Root?) -> Value? {

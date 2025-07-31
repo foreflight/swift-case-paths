@@ -10,10 +10,10 @@ extension AnyCasePath {
   /// > your code and instead favor using types that employ the ``CasePathable()`` macro.
   ///
   /// - Parameter embed: An embed function.
-  @available(iOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
-  @available(macOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
-  @available(tvOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
-  @available(watchOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
+//@available(iOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
+//@available(macOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
+//@available(tvOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
+//@available(watchOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
   public init(unsafe embed: @escaping @Sendable (Value) -> Root) {
     func open<Wrapped>(_: Wrapped.Type) -> @Sendable (Root) -> Value? {
       optionalPromotedExtractHelp(unsafeBitCast(embed, to: (@Sendable (Value) -> Wrapped?).self))
@@ -34,10 +34,10 @@ extension AnyCasePath {
   ///
   /// > Important: This operation is provided for backwards compatibility. Avoid introducing it to
   /// > your code and instead favor using types that employ the ``CasePathable()`` macro.
-  @available(iOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
-  @available(macOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
-  @available(tvOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
-  @available(watchOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
+//@available(iOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
+//@available(macOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
+//@available(tvOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
+//@available(watchOS, deprecated: 9999, message: "Use a 'CasePathable' case key path, instead")
   @_disfavoredOverload
   public init(unsafe root: @autoclosure @escaping @Sendable () -> Root) where Value == Void {
     func open<Wrapped>(_: Wrapped.Type) -> @Sendable (Root) -> Void? {
