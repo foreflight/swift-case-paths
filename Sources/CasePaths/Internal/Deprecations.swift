@@ -31,10 +31,10 @@ extension AnyCasePath {
     return result
   }
 
-////@available(iOS, deprecated: 9999, message: "Chain case key paths together, instead.")
-////@available(macOS, deprecated: 9999, message: "Chain case key paths together, instead.")
-////@available(tvOS, deprecated: 9999, message: "Chain case key paths together, instead.")
-////@available(watchOS, deprecated: 9999, message: "Chain case key paths together, instead.")
+//@available(iOS, deprecated: 9999, message: "Chain case key paths together, instead.")
+//@available(macOS, deprecated: 9999, message: "Chain case key paths together, instead.")
+//@available(tvOS, deprecated: 9999, message: "Chain case key paths together, instead.")
+//@available(watchOS, deprecated: 9999, message: "Chain case key paths together, instead.")
   public func appending<AppendedValue>(
     path: AnyCasePath<Value, AppendedValue>
   ) -> AnyCasePath<Root, AppendedValue> {
