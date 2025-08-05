@@ -5,7 +5,7 @@ protocol TestProtocol: Sendable {}
 extension Int: TestProtocol {}
 protocol TestClassProtocol: AnyObject {}
 
-@available(*, deprecated)
+//@available(*, deprecated)
 final class DeprecatedTests: XCTestCase {
   func testSimplePayload() {
     enum Enum { case payload(Int) }
