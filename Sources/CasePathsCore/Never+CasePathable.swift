@@ -22,7 +22,7 @@ extension Case where Value: CasePathable {
 }
 
 extension Case {
-//  @available(*, deprecated, message: "This enum must be '@CasePathable' to enable key path syntax")
+  //  @available(*, deprecated, message: "This enum must be '@CasePathable' to enable key path syntax")
   public var never: Case<Never> {
     @Sendable func absurd<T>(_: Never) -> T {}
     return Case<Never>(embed: absurd, extract: { (_: Value) in nil })

@@ -2,7 +2,7 @@
   @_spi(Internals) import CasePaths
   import XCTest
 
-//  @available(*, deprecated)
+  //  @available(*, deprecated)
   final class DeprecatedXCTModifyTests: XCTestCase {
     struct SomeError: Error, Equatable {}
 
